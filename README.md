@@ -33,7 +33,7 @@ Once everything is installed open terminal in VS Code and type "node index.js" f
 ## Screenshot
 <a name="#screenshot"></a>
 
-Incoming
+![Team-Profile-Generator-Screenshot](https://user-images.githubusercontent.com/119876939/223590553-980cd0b0-4bc7-4bd0-afc5-62b9fdff9669.png)
 
 ## License 
 <a name="#license"></a>
