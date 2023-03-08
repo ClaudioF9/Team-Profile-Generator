@@ -5,7 +5,6 @@
 This project is part of my front-end web development bootcamp. The project entails creating a Team Profile Generater application using the Node.js command-line. This application will take in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person.
 
 ## Table of Contents
----
 1. [Installation](#installation)
 2. [Usage](#usage)
 3. [Screenshot](#screenshot)
