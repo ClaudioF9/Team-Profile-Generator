@@ -13,8 +13,11 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
+//created empty array
 const teamMembers = [];
 
+
+//Questions for Manager
 const managerQuestions = [
     {
         type: "input",
@@ -38,6 +41,7 @@ const managerQuestions = [
     },
 ];
 
+//Questions for Engineer
 const engineerQuestions = [
     {
         type: "input",
@@ -61,6 +65,7 @@ const engineerQuestions = [
     },
 ];
 
+//Questions for Intern
 const internQuestions = [
     {
         type: "input",
@@ -84,7 +89,7 @@ const internQuestions = [
     },
 ];
 
-
+//Generate list to select Engineers or Interns or complete team
 const addEmployeeQuestion = {
     type: "list",
     name: "employeeType",
@@ -92,6 +97,7 @@ const addEmployeeQuestion = {
     choices: ["Engineer", "Intern", "Finish building the team"],
   };
 
+//function to prompts inquirer to ask Manager questions - add answers in object form to array, then calls addEmployee function
 function addManager() {
     inquirer.prompt(managerQuestions).then((answers) => {
       const manager = new Manager(
@@ -105,6 +111,7 @@ function addManager() {
     });
 }
 
+//function to prompt inquirer to ask Engineer questions - add answers in object form to array, then calls addEmployee function
 function addEngineer() {
     inquirer.prompt(engineerQuestions).then((answers) => {
       const engineer = new Engineer(
@@ -118,6 +125,7 @@ function addEngineer() {
     });
 }
 
+//function to prompt inquirer to ask Intern questions - add answers in object form to array, then calls addEmployee function
 function addIntern() {
     inquirer.prompt(internQuestions).then((answers) => {
       const intern = new Intern(
@@ -131,6 +139,7 @@ function addIntern() {
     });
 }
 
+//function to prompt inquirer to ask type of employee or complete team and renders
 function addEmployee() {
     inquirer.prompt(addEmployeeQuestion).then((answer) => {
       switch (answer.employeeType) {
@@ -146,6 +155,7 @@ function addEmployee() {
     });
 }
 
+//generates html file and writes information and saves in output folder
 function writeToFile(outputPath, data) {
     fs.writeFile(outputPath, data, (err) =>
     err ? console.error(err) : console.log("Your team has been successfully created!")
@@ -153,6 +163,7 @@ function writeToFile(outputPath, data) {
     }
     
 
+//initiates
 addManager();
 
 
