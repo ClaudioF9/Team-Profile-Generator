@@ -84,18 +84,75 @@ const internQuestions = [
     },
 ];
 
-const addEngineerQuestion = {
-    type: "list",
-    name: "addEngineer",
-    message: "would you like to add an engineer",
-    choices: ["Yes, ad an engineer", "No, finish building the team"],
-};
 
-const addInternQuestion = {
+const addEmployeeQuestion = {
     type: "list",
-    name: "addIntern",
-    message: "Would you like to add an intern?",
-    choices: ["Yes, add an intern", "No, finish building the team"],
-};
+    name: "employeeType",
+    message: "Which type of employee would you like to add?",
+    choices: ["Engineer", "Intern", "Finish building the team"],
+  };
+
+function addManager() {
+    inquirer.prompt(managerQuestions).then((answers) => {
+      const manager = new Manager(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.officeNumber
+      );
+      teamMembers.push(manager);
+      addEmployee();
+    });
+}
+
+function addEngineer() {
+    inquirer.prompt(engineerQuestions).then((answers) => {
+      const engineer = new Engineer(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.github
+      );
+      teamMembers.push(engineer);
+      addEmployee();
+    });
+}
+
+function addIntern() {
+    inquirer.prompt(internQuestions).then((answers) => {
+      const intern = new Intern(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.school
+      );
+      teamMembers.push(intern);
+      addEmployee();
+    });
+}
+
+function addEmployee() {
+    inquirer.prompt(addEmployeeQuestion).then((answer) => {
+      switch (answer.employeeType) {
+        case "Engineer":
+          addEngineer();
+          break;
+        case "Intern":
+            addIntern();
+            break;
+          default:
+            writeToFile(outputPath, render(teamMembers));
+        }
+    });
+}
+
+function writeToFile(outputPath, data) {
+    fs.writeFile(outputPath, data, (err) =>
+    err ? console.error(err) : console.log("Your team has been successfully created!")
+    );
+    }
+    
+
+addManager();
 
 
